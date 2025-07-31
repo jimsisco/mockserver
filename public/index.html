@@ -1,0 +1,109 @@
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+      integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>JSON Server</title>
+  </head>
+  <body>
+    <header>
+    </header>
+    <main>
+      <div class="container" style="width:50%; margin:0 auto;">
+        <h1>Mock API Server</h1>
+        <p>
+          The Mock API Server is currently running. The resources available are defined below. A Postman collection file can be found <a href="MockServer.postman_collection.json" download="MockServer.postman_collection.json">here</a>.
+          <br />
+        </p>
+
+        <div>
+	    <ul>
+	        <li>Shipments</li>
+		    <ul>
+          <li><a href="./v1/shipments">/v1/shipments</a></li>
+          <li><a href="./v1/shipments/1">/v1/shipments/1</a></li>
+		    </ul>
+        <li>Orders</li>
+        <ul>
+          <li><a href="./v1/orders">/v1/oreders</a></li>
+          <li><a href="./v1/orders/1">/v1/orders/1</a></li>
+        </ul>
+        <li>Returns</li>
+        <ul>
+          <li><a href="./v1/returns?returnedAfter=2025-01-17">/v1/returns?returnedAfter=2025-01-17</a></li>
+        </ul>
+        <li>Mock Server Utilities</li>
+          <ul>
+            <li><a href="./v1/refresh-dbjson">/v1/refresh-dbjson</a> Refreshes the db.json if it has been manually updated.  </li>
+          </ul>
+          <ul>
+            <li><a href="./v1/helloworld?name=Caspser">/v1/helloworld?name=Caspser</a> Returns a hellow world respones</li>
+          </ul>
+	</div>
+  <h1>Documentation</h1>
+	<p>
+	  You have to make sure that the routes you want to test exist in this MockServer for this to work. Each route and data point is setup manually in here. So if you are testing a brand new endpoint, it will not automagically appear in this server.
+	</p>
+	
+  
+  <h2>Endpoint Details</h2>
+  <li>Orders</li>
+    <ul>
+      <li>GET <a href="./v1/orders">/v1/orders</a> -Returns a list of orders from db.json file. </li>
+      <li>GET <a href="./v1/orders/1">/v1/orders/1</a> -Returns the order based on the order number from db.json. </li>
+      <li>PUT <a href="./v1/orders/1"> PUT /v1/orders/1</a> -Processes request and creates an order in the db.json.  The record that is created
+      is formated to return the expected results that includes shipping number and tracking id's.  The results are returned in the request 
+      response.  The process does validate shipTo, billTo, quantity, and if the prodct exist in the valid list of product id's 
+      and will return a 404 if one of the valiations fails. </li>
+    </ul>
+  <li>Returns</li>
+    <ul>
+      <li>POST <a href="./v1/returns">/v1/returns</a> -Adds return json into db.json file. </li>
+      <li>GET <a href="./v1/orders/?returnedAfter='2025-01-27">/v1/returns?returnedAfter='2025-01-27'</a> -Gets records from db.json file where the returndAfter date is = to the date provided in the query. </li>
+    </ul>
+  <li>Shippmints</li>
+    <ul>
+      <b>Tracking Numbers:</b> If you want to see an order that has multiple tracking numbers, do the following.  This can be done by setting the
+      quantity on the sales order line item to a given amonut.
+      <ul>-1 Tracking Number: set the item quantity to less tha equal to 10. </ul>
+      <ul>-2 Tracking Numbers: set the quantity to equals 20</ul>
+      <ul>-3 Tracking Numbers: set the quantity to equals 30</ul>
+    </ul>
+
+    <h2>Supported End to End Processes</h2> 
+  <title>Supported End to End Processes</title> 
+  <table border="2"> 
+    <tr> 
+      <th>Process</th> <th>Endpoint(s)</th> <th>Description</th> 
+    </tr> 
+    <tr> 
+      <td>export-orders </td> <td> PUT /orders </td> <td>The mock server returns a 201 status code for regular orders to indicate that the order has been sent to TR and that the "sentToWarehouse" falg is set to true. </td>
+    </tr>
+    <tr>
+      <td>export-transfer-orders </td> <td>PUT /orders </td> <td>The mock server returns a 201 status code for transfer orders to indicate that the order has been sent and that the "sentToWarehouse" falg is set to true. </td> 
+    </tr> 
+    <tr>
+      <td>export-subscriptions </td> <td>PUT /orders </td> <td>The mock server returns a 201 status code for subscription orders to indicate that the order has been sent and that the "sentToWarehouse" falg is set to true. </td> 
+    </tr>
+    <tr>
+      <td>shipping:order-confirmation </td> <td>GET /orders </td> <td>The mock server returns a 200 status code for regulare and subscription orders has been return.  The shpping and tracking number in contained in the resonse. </td> 
+    </tr> 
+  </table>
+  <p>
+	  The official json-server documentation can be found at the <a href="https://github.com/typicode/json-server">README</a>
+  </p>
+  </div>
+    </main>
+    <footer style="position: absolute; bottom: 0; width: 100%; height: 50px;">
+      <div class="container" style="width:50%; margin:0 auto;">
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+

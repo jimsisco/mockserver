@@ -1,0 +1,90 @@
+{
+   "tr_getNextIds": [
+      {
+         "tr_current_return_id": 38
+      },
+      {
+         "tr_current_shipment_id": 1
+      }
+   ],
+   "shipments": [
+      {
+         "id": 350976,
+         "orderId": "f1b4a5c0-97b2-ef11-b8ea-002248b730c0",
+         "carrier": "LTL",
+         "shipDate": 655001,
+         "totalWeight": "1.5",
+         "packageTracking": [
+            "'1Z253242045876873402'"
+         ],
+         "shipmentItems": [
+            {
+               "lineItemId": "30141574",
+               "quantity": 1
+            }
+         ]
+      }
+   ],
+   "orders": [
+      {
+         "id": "32000005",
+         "shipTo": {
+            "city": "COLUMBUS",
+            "nameLine1": "St Bonaventure Church",
+            "nameLine2": "",
+            "postalCode": "68601-5140",
+            "regionCode": "NE",
+            "countryCode": "US",
+            "phoneNumber": "402-564-7151",
+            "addressLine1": "1565 18TH AVE",
+            "addressLine2": ""
+         },
+         "lineItems": [
+            {
+               "canceled": false,
+               "id": 20000,
+               "orderId": "32000005",
+               "productId": "BD-241",
+               "quantity": 1,
+               "returns": [],
+               "shipmentIds": [
+                  120
+               ],
+               "externalLineNumber": 20000
+            }
+         ],
+         "orderDate": "2025-01-09",
+         "customerId": "1289",
+         "shipMethod": "U11",
+         "subscriptions": [
+            {
+               "callbackUrl": "https://api-tr-stage.ocp.org/api/vendors/tr/shipments",
+               "subscriptionType": "Shipment"
+            }
+         ],
+         "externalOrderId": "72785e6c-f1ce-ef11-8a6d-002248bb766b",
+         "completeDelivery": true,
+         "specialProcessingCode": "OCP-REGULAR",
+         "shipments": [
+            {
+               "carrier": "U11",
+               "id": 120,
+               "orderId": "32000005",
+               "orderType": "warehouse",
+               "shipDate": "2025-01-09",
+               "shipmentItems": [
+                  {
+                     "lineItemId": 20000,
+                     "quantity": 1
+                  }
+               ],
+               "totalWeight": 1.4,
+               "trackingNumbers": [
+                  "1Z7754422651745"
+               ]
+            }
+         ]
+      }
+   ],
+   "returns": []
+}

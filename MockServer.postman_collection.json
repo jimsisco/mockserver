@@ -1,0 +1,430 @@
+{
+	"info": {
+		"_postman_id": "99cd5357-887b-477d-b1e8-b1f1552e5841",
+		"name": "MockServer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37692583"
+	},
+	"item": [
+		{
+			"name": "tr orders",
+			"item": [
+				{
+					"name": "orders noni",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"orderId\": \"1937c92d-10ac-ef11-8a6b-0022487acb06\",\r\n  \"packageTracking\": [\r\n    {\r\n      \"trackingNumber\": \"LTL735034516055390450\"\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/v1/orders/20000",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"orders",
+								"20000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "orders local",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"orderId\": \"1937c92d-10ac-ef11-8a6b-0022487acb06\",\r\n  \"packageTracking\": [\r\n    {\r\n      \"trackingNumber\": \"LTL735034516055390450\"\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/v1/orders/20000",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"orders",
+								"20000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "order noni",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"orderId\": \"1937c92d-10ac-ef11-8a6b-0022487acb06\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "cecilia.stage.ocp.org:3000/v1/orders/222222",
+							"host": [
+								"cecilia",
+								"stage",
+								"ocp",
+								"org"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"orders",
+								"222222"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "order local",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"32000005\",\r\n    \"billTo\": {\r\n        \"city\": \"COLUMBUS\",\r\n        \"nameLine1\": \"St Bonaventure Church\",\r\n        \"postalCode\": \"68601-5140\",\r\n        \"regionCode\": \"NE\",\r\n        \"countryCode\": \"US\",\r\n        \"phoneNumber\": \"402-564-7151\",\r\n        \"addressLine1\": \"1565 18TH AVE\",\r\n        \"addressLine2\": \"\"\r\n    },\r\n    \"shipTo\": {\r\n        \"city\": \"COLUMBUS\",\r\n        \"nameLine1\": \"St Bonaventure Church\",\r\n        \"nameLine2\": \"\",\r\n        \"postalCode\": \"68601-5140\",\r\n        \"regionCode\": \"NE\",\r\n        \"countryCode\": \"US\",\r\n        \"phoneNumber\": \"402-564-7151\",\r\n        \"addressLine1\": \"1565 18TH AVE\",\r\n        \"addressLine2\": \"\"\r\n    },\r\n    \"lineItems\": [\r\n        {\r\n            \"quantity\": 11111111111,\r\n            \"productId\": \"BD-241\",\r\n            \"pricePerUnit\": 4.99,\r\n            \"externalLineNumber\": 20000\r\n        }\r\n    ],\r\n    \"orderDate\": \"2025-01-09\",\r\n    \"customerId\": \"1289\",\r\n    \"shipMethod\": \"U11\",\r\n    \"subscriptions\": [\r\n        {\r\n            \"callbackUrl\": \"https://api-tr-stage.ocp.org/api/vendors/tr/shipments\",\r\n            \"subscriptionType\": \"Shipment\"\r\n        }\r\n    ],\r\n    \"externalOrderId\": \"72785e6cf1ceef118a6d002248bb766b\",\r\n    \"completeDelivery\": true,\r\n    \"specialProcessingCode\": \"OCP-REGULAR\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/v1/orders/20000251",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"orders",
+								"20000251"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tr returns",
+			"item": [
+				{
+					"name": "returns",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"orderId\": \"1937c92d-10ac-ef11-8a6b-0022487acb06\",\r\n  \"packageTracking\": [\r\n    {\r\n      \"trackingNumber\": \"LTL735034516055390450\"\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/v1/orders/20000",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"orders",
+								"20000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "returns noni",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"orderId\": \"1937c92d-10ac-ef11-8a6b-0022487acb06\",\r\n  \"packageTracking\": [\r\n    {\r\n      \"trackingNumber\": \"LTL735034516055390450\"\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/v1/orders/20000",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"orders",
+								"20000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "returns",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"orderId\": \"1937c92d-10ac-ef11-8a6b-0022487acb06\",\r\n  \"packageTracking\": [\r\n    {\r\n      \"trackingNumber\": \"LTL735034516055390450\"\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/v1/returns",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"returns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "returns noni",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"orderId\": \"1937c92d-10ac-ef11-8a6b-0022487acb06\",\r\n  \"packageTracking\": [\r\n    {\r\n      \"trackingNumber\": \"LTL735034516055390450\"\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/v1/returns",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"returns"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "shipments",
+			"item": [
+				{
+					"name": "shipment local",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"orderId\": \"1937c92d-10ac-ef11-8a6b-0022487acb06\",\r\n  \"packageTracking\": [\r\n    {\r\n      \"trackingNumber\": \"LTL735034516055390450\"\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/v1/shipments",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"shipments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "shipment noni",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "shipment noni",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 350976,\r\n  \"orderId\": \"f1b4a5c0-97b2-ef11-b8ea-002248b730c0\",\r\n  \"carrier\": \"LTL\",\r\n  \"shipDate\": 655001,\r\n  \"totalWeight\": \"1.5\",\r\n  \"packageTracking\": [\r\n    \"'1Z253242045876873402'\"\r\n  ],\r\n  \"shipmentItems\": [\r\n    {\r\n      \"lineItemId\": \"30141574\",\r\n      \"quantity\": 1\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/v1/shipments",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"shipments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "shipment noni",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"orderId\": \"ff49d882-98ae-ef11-8a6b-000d3a6ccdc5\",\r\n  \"carrier\": \"LTL\",\r\n  \"shipDate\": \"2024-11-30T21:26:03.337Z\",\r\n  \"totalWeight\": \"1.5\",\r\n  \"packageTracking\": [\r\n    {\r\n      \"trackingNumber\": \"'1Z671311287964408324'\"\r\n    }\r\n  ],\r\n  \"shipmentItems\": [\r\n    {\r\n      \"lineItemId\": \"30141574\",\r\n      \"quantity\": 1\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "cecilia.stage.ocp.org:3000/v1/shipments/",
+							"host": [
+								"cecilia",
+								"stage",
+								"ocp",
+								"org"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"shipments",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "utilities",
+			"item": [
+				{
+					"name": "refresh-dbjson",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"orderId\": \"1937c92d-10ac-ef11-8a6b-0022487acb06\",\r\n  \"packageTracking\": [\r\n    {\r\n      \"trackingNumber\": \"LTL735034516055390450\"\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/v1/shipments",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"shipments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh-dbjson Noni",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"orderId\": \"1937c92d-10ac-ef11-8a6b-0022487acb06\",\r\n  \"packageTracking\": [\r\n    {\r\n      \"trackingNumber\": \"LTL735034516055390450\"\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/v1/shipments",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"shipments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

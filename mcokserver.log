@@ -1,0 +1,139 @@
+2025-05-27T16:33:23.458Z - OCP Mock Server is running
+2025-05-27T16:33:23.467Z - Finshed loading valid TR items
+2025-05-27T16:38:04.747Z - OCP Mock Server is running
+2025-05-27T16:38:04.755Z - Finshed loading valid TR items
+2025-05-27T16:38:10.114Z - OCP Mock Server is running
+2025-05-27T16:38:10.123Z - Finshed loading valid TR items
+2025-05-27T16:39:20.514Z - OCP Mock Server is running
+2025-05-27T16:39:20.523Z - Finshed loading valid TR items
+2025-05-27T16:39:46.653Z - Get Shipment with Id: [{"carrier":"LTL","id":115,"orderId":"20003735","orderType":"warehouse","shipDate":"2025-02-17","shipmentItems":[{"lineItemId":1000,"quantity":1}],"totalWeight":1.4,"trackingNumbers":["1Z3691395026793"]}]
+2025-05-27T17:58:58.894Z - OCP Mock Server is running
+2025-05-27T17:58:58.903Z - Finshed loading valid TR items
+2025-05-27T18:00:02.563Z - OCP Mock Server is running
+2025-05-27T18:00:02.572Z - Finshed loading valid TR items
+2025-05-27T18:06:31.625Z - OCP Mock Server is running
+2025-05-27T18:06:31.633Z - Finshed loading valid TR items
+2025-05-27T18:07:12.293Z - Mock Server is running
+2025-05-27T18:07:12.301Z - Finshed loading valid TR items
+2025-05-27T18:07:53.155Z - Mock Server is running
+2025-05-27T18:07:53.163Z - Finshed loading valid TR items
+2025-05-27T18:08:15.923Z - Get Shipment 1 failed: {"userMessage":"missing shipment","technicalMessage":"missing shipment"}
+2025-05-27T18:08:21.714Z - Get Shipment with Id: [{"carrier":"LTL","id":115,"orderId":"20003735","orderType":"warehouse","shipDate":"2025-02-17","shipmentItems":[{"lineItemId":1000,"quantity":1}],"totalWeight":1.4,"trackingNumbers":["1Z3691395026793"]}]
+2025-05-27T18:08:46.966Z - OCP Mock Server is running
+2025-05-27T18:08:46.975Z - Finshed loading valid TR items
+2025-05-27T18:09:02.233Z - Mock Server is running
+2025-05-27T18:09:02.243Z - Finshed loading valid TR items
+2025-05-27T18:11:33.636Z - OCP Mock Server is running
+2025-05-27T18:11:33.645Z - Finshed loading valid TR items
+2025-05-27T18:12:04.503Z - Mock Server is running
+2025-05-27T18:12:04.512Z - Finshed loading valid TR items
+2025-05-27T18:12:15.155Z - Get Shipment 1 failed: {"userMessage":"missing shipment","technicalMessage":"missing shipment"}
+2025-05-27T18:12:28.529Z - Get Shipment 1 failed: {"userMessage":"missing shipment","technicalMessage":"missing shipment"}
+2025-05-27T18:13:52.804Z - Mock Server is running
+2025-05-27T18:13:52.814Z - Finshed loading valid TR items
+2025-05-27T18:15:13.379Z - Starting Mock TR order processing for BC order number #20000251
+2025-05-27T18:15:13.379Z - Line item 1 of 1 was not valid for the following reasons: Quantity must be between 1 and 9999999999.
+2025-05-27T18:15:13.380Z - Mock TR order processing FAILED for order # 20000251
+2025-05-27T18:15:13.379Z - Error response created
+2025-05-27T18:15:13.380Z - Failure Reason: {"userMessage":"Line item 1 of 1 was not valid for the following reasons: Quantity must be between 1 and 9999999999.\n ","technicalMessage":"Line item 1 of 1 was not valid for the following reasons: Quantity must be between 1 and 9999999999.\n "}
+2025-05-27T18:15:13.379Z - Validation issues were found ["quantity"]
+2025-05-27T18:15:34.465Z - New Shipment Id Created: 116
+2025-05-27T18:15:34.463Z - Starting Mock TR order processing for BC order number #20000251
+2025-05-27T18:15:34.463Z - Validation process has compelted with no errors found
+2025-05-27T18:15:34.465Z - The order number "20000251 shipment was created
+2025-05-27T18:15:34.465Z - Response: {"id":"32000005","shipTo":{"city":"COLUMBUS","nameLine1":"St Bonaventure Church","nameLine2":"","postalCode":"68601-5140","regionCode":"NE","countryCode":"US","phoneNumber":"402-564-7151","addressLine1":"1565 18TH AVE","addressLine2":""},"lineItems":[{"canceled":false,"id":20000,"orderId":"32000005","productId":"BD-241","quantity":1,"returns":[],"shipmentIds":[116],"externalLineNumber":20000}],"orderDate":"2025-01-09","customerId":"1289","shipMethod":"U11","subscriptions":[{"callbackUrl":"https://api-tr-stage.ocp.org/api/vendors/tr/shipments","subscriptionType":"Shipment"}],"externalOrderId":"72785e6c-f1ce-ef11-8a6d-002248bb766b","completeDelivery":true,"specialProcessingCode":"OCP-REGULAR","shipments":[{"carrier":"U11","id":116,"orderId":"32000005","orderType":"warehouse","shipDate":"2025-01-09","shipmentItems":[{"lineItemId":20000,"quantity":1}],"totalWeight":1.4,"trackingNumbers":["1Z5120014628726"]}]}
+2025-05-27T18:15:34.467Z - The shipment for order number 20000251 was added to the db.json
+2025-05-27T18:15:34.470Z - The order number 20000251 was added to the db.json
+2025-05-27T18:15:34.472Z - Compelted adding mock TR order processing for BC order #20000251
+2025-05-27T18:18:38.773Z - Mock Server is running
+2025-05-27T18:18:38.781Z - Finshed loading valid TR items
+2025-05-27T18:19:06.599Z - Mock Server is running
+2025-05-27T18:19:06.608Z - Finshed loading valid items
+2025-05-27T18:20:00.466Z - Starting Mock TR order processing for BC order number #20000251
+2025-05-27T18:20:00.467Z - Validation process has compelted with no errors found
+2025-05-27T18:20:00.468Z - New Shipment Id Created: 117
+2025-05-27T18:20:00.468Z - The order number "20000251 shipment was created
+2025-05-27T18:20:00.468Z - Response: {"id":"32000005","shipTo":{"city":"COLUMBUS","nameLine1":"St Bonaventure Church","nameLine2":"","postalCode":"68601-5140","regionCode":"NE","countryCode":"US","phoneNumber":"402-564-7151","addressLine1":"1565 18TH AVE","addressLine2":""},"lineItems":[{"canceled":false,"id":20000,"orderId":"32000005","productId":"BD-241","quantity":1,"returns":[],"shipmentIds":[117],"externalLineNumber":20000}],"orderDate":"2025-01-09","customerId":"1289","shipMethod":"U11","subscriptions":[{"callbackUrl":"https://api-tr-stage.ocp.org/api/vendors/tr/shipments","subscriptionType":"Shipment"}],"externalOrderId":"72785e6c-f1ce-ef11-8a6d-002248bb766b","completeDelivery":true,"specialProcessingCode":"OCP-REGULAR","shipments":[{"carrier":"U11","id":117,"orderId":"32000005","orderType":"warehouse","shipDate":"2025-01-09","shipmentItems":[{"lineItemId":20000,"quantity":1}],"totalWeight":1.4,"trackingNumbers":["1Z3531028090946"]}]}
+2025-05-27T18:20:00.474Z - The order number 20000251 was added to the db.json
+2025-05-27T18:20:00.471Z - The shipment for order number 20000251 was added to the db.json
+2025-05-27T18:20:00.478Z - Compelted adding mock TR order processing for BC order #20000251
+2025-05-27T18:20:14.888Z - Starting Mock TR order processing for BC order number #20000252
+2025-05-27T18:20:14.888Z - Validation process has compelted with no errors found
+2025-05-27T18:20:14.889Z - Response: {"id":"32000005","shipTo":{"city":"COLUMBUS","nameLine1":"St Bonaventure Church","nameLine2":"","postalCode":"68601-5140","regionCode":"NE","countryCode":"US","phoneNumber":"402-564-7151","addressLine1":"1565 18TH AVE","addressLine2":""},"lineItems":[{"canceled":false,"id":20000,"orderId":"32000005","productId":"BD-241","quantity":1,"returns":[],"shipmentIds":[118],"externalLineNumber":20000}],"orderDate":"2025-01-09","customerId":"1289","shipMethod":"U11","subscriptions":[{"callbackUrl":"https://api-tr-stage.ocp.org/api/vendors/tr/shipments","subscriptionType":"Shipment"}],"externalOrderId":"72785e6c-f1ce-ef11-8a6d-002248bb766b","completeDelivery":true,"specialProcessingCode":"OCP-REGULAR","shipments":[{"carrier":"U11","id":118,"orderId":"32000005","orderType":"warehouse","shipDate":"2025-01-09","shipmentItems":[{"lineItemId":20000,"quantity":1}],"totalWeight":1.4,"trackingNumbers":["1Z9977752412412"]}]}
+2025-05-27T18:20:14.889Z - New Shipment Id Created: 118
+2025-05-27T18:20:14.889Z - The order number "20000252 shipment was created
+2025-05-27T18:20:14.891Z - The shipment for order number 20000252 was added to the db.json
+2025-05-27T18:20:14.895Z - Compelted adding mock TR order processing for BC order #20000252
+2025-05-27T18:20:14.895Z - The order number 20000252 was added to the db.json
+2025-05-27T18:21:35.666Z - Mock Server is running
+2025-05-27T18:21:35.674Z - Finshed loading valid items
+2025-05-27T18:22:13.391Z - Mock Server is running
+2025-05-27T18:22:13.400Z - Finshed loading valid items
+2025-05-27T18:23:18.774Z - Mock Server is running
+2025-05-27T18:23:18.785Z - Finshed loading valid items
+2025-05-27T18:23:34.185Z - db.json was refreshed
+2025-05-27T18:23:48.119Z - Mock Server is running
+2025-05-27T18:23:48.127Z - Finshed loading valid items
+2025-05-27T18:24:23.806Z - Mock Server is running
+2025-05-27T18:24:23.818Z - Finshed loading valid items
+2025-05-27T18:24:48.810Z - Mock Server is running
+2025-05-27T18:24:48.818Z - Finshed loading valid items
+2025-05-27T18:25:30.189Z - Mock Server is running
+2025-05-27T18:25:30.198Z - Finshed loading valid items
+2025-05-27T18:26:23.844Z - Mock Server is running
+2025-05-27T18:26:23.854Z - Finshed loading valid items
+2025-05-27T18:26:27.045Z - db.json was not updated
+2025-05-27T18:26:42.354Z - Mock Server is running
+2025-05-27T18:26:42.363Z - Finshed loading valid items
+2025-05-27T18:27:44.073Z - Mock Server is running
+2025-05-27T18:27:44.082Z - Finshed loading valid items
+2025-05-27T18:28:17.317Z - Mock Server is running
+2025-05-27T18:28:17.327Z - Finshed loading valid items
+2025-05-27T18:28:49.699Z - Mock Server is running
+2025-05-27T18:28:49.708Z - Finshed loading valid items
+2025-05-27T18:29:14.520Z - Mock Server is running
+2025-05-27T18:29:14.530Z - Finshed loading valid items
+2025-05-27T18:29:20.887Z - [object Object]
+2025-05-27T18:29:54.287Z - Mock Server is running
+2025-05-27T18:29:54.296Z - Finshed loading valid items
+2025-05-27T18:29:57.028Z - Well howdyjim
+2025-05-27T18:30:14.605Z - Mock Server is running
+2025-05-27T18:30:14.614Z - Finshed loading valid items
+2025-05-27T18:30:23.187Z - Well howdyjim
+2025-05-27T18:34:20.243Z - Well howdyjim
+2025-05-27T18:36:59.066Z - Well howdyjim
+2025-05-27T18:38:18.994Z - Mock Server is running
+2025-05-27T18:38:19.004Z - Finshed loading valid items
+2025-05-27T18:38:34.182Z - Well howdyundefined
+2025-05-27T18:39:13.387Z - Well howdyCaspser
+2025-05-27T18:42:18.148Z - Get Shipments failed: {"userMessage":"missing shipment","technicalMessage":"missing shipment"}
+2025-05-27T18:50:54.763Z - Mock Server is running
+2025-05-27T18:50:54.772Z - Finshed loading valid items
+2025-05-27T18:51:03.124Z - Mock Server is running
+2025-05-27T18:51:03.132Z - Finshed loading valid items
+2025-05-27T18:54:43.579Z - Mock Server is running
+2025-05-27T18:54:43.588Z - Finshed loading valid items
+2025-05-27T18:54:45.629Z - Starting Mock TR order processing for BC order number #20000252
+2025-05-27T18:54:45.631Z - New Shipment Id Created: 120
+2025-05-27T18:54:45.630Z - Validation process has compelted with no errors found
+2025-05-27T18:54:49.739Z - The order number "20000252 shipment was created
+2025-05-27T18:54:49.740Z - Response: {"id":"32000005","shipTo":{"city":"COLUMBUS","nameLine1":"St Bonaventure Church","nameLine2":"","postalCode":"68601-5140","regionCode":"NE","countryCode":"US","phoneNumber":"402-564-7151","addressLine1":"1565 18TH AVE","addressLine2":""},"lineItems":[{"canceled":false,"id":20000,"orderId":"32000005","productId":"BD-241","quantity":1,"returns":[],"shipmentIds":[120],"externalLineNumber":20000}],"orderDate":"2025-01-09","customerId":"1289","shipMethod":"U11","subscriptions":[{"callbackUrl":"https://api-tr-stage.ocp.org/api/vendors/tr/shipments","subscriptionType":"Shipment"}],"externalOrderId":"72785e6c-f1ce-ef11-8a6d-002248bb766b","completeDelivery":true,"specialProcessingCode":"OCP-REGULAR","shipments":[{"carrier":"U11","id":120,"orderId":"32000005","orderType":"warehouse","shipDate":"2025-01-09","shipmentItems":[{"lineItemId":20000,"quantity":1}],"totalWeight":1.4,"trackingNumbers":["1Z7754422651745"]}]}
+2025-05-27T18:54:49.744Z - The order number 20000252 was added to the db.json
+2025-05-27T18:54:49.742Z - The shipment for order number 20000252 was added to the db.json
+2025-05-27T18:54:49.747Z - Compelted adding mock TR order processing for BC order #20000252
+2025-05-27T18:55:49.369Z - Well howdyCaspser
+2025-05-27T19:00:43.252Z - Mock Server is running
+2025-05-27T19:00:43.261Z - Finshed loading valid items
+2025-05-27T19:02:13.276Z - Get Shipment with Id: [{"id":350976,"orderId":"f1b4a5c0-97b2-ef11-b8ea-002248b730c0","carrier":"LTL","shipDate":655001,"totalWeight":"1.5","packageTracking":["'1Z253242045876873402'"],"shipmentItems":[{"lineItemId":"30141574","quantity":1}]}]
+2025-05-27T19:02:25.153Z - Get Shipment with Id: [{"id":350976,"orderId":"f1b4a5c0-97b2-ef11-b8ea-002248b730c0","carrier":"LTL","shipDate":655001,"totalWeight":"1.5","packageTracking":["'1Z253242045876873402'"],"shipmentItems":[{"lineItemId":"30141574","quantity":1}]}]
+2025-05-27T19:21:26.417Z - Get Shipment with Id: [{"id":350976,"orderId":"f1b4a5c0-97b2-ef11-b8ea-002248b730c0","carrier":"LTL","shipDate":655001,"totalWeight":"1.5","packageTracking":["'1Z253242045876873402'"],"shipmentItems":[{"lineItemId":"30141574","quantity":1}]}]
+2025-05-27T20:49:36.937Z - Well howdyCaspser
+2025-05-27T21:24:29.224Z - Mock Server is running
+2025-05-27T21:24:29.236Z - Finshed loading valid items
+2025-05-28T17:22:40.729Z - Mock Server is running
+2025-05-28T17:22:40.737Z - Finshed loading valid items
+2025-05-28T17:24:51.158Z - Mock Server is running
+2025-05-28T17:24:51.167Z - Finshed loading valid items
+2025-05-28T17:26:05.882Z - Mock Server is running
+2025-05-28T17:26:05.891Z - Finshed loading valid items
+2025-05-28T18:11:48.002Z - Well howdyjim

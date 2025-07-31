@@ -1,0 +1,405 @@
+const jsonServer = require('json-server');
+const server = jsonServer.create();
+const router = jsonServer.router('db.json');
+const middlewares = jsonServer.defaults();
+const _ = require('lodash')
+const { faker } = require('@faker-js/faker');
+const fs = require('fs');
+
+// Set default middlewares (logger, static, cors and no-cache)
+server.use(middlewares)
+server.use(jsonServer.bodyParser)
+
+// Load Valid TR Iitems from Created by Jim S.
+const csv = require('csv-parser');
+const validTrItems = [];
+// Open the file located in the workspace root and save to an array
+fs.createReadStream('validTrItems.csv')
+    .pipe(csv())
+    .on('data', (data) => validTrItems.push(data))
+    .on('end', () => {
+        console.log('Finshed loading valid TR items');
+});
+
+// Get noni mysql creds added buy Jims
+// Load the dotenv package
+require('dotenv').config();
+// Get environment variables
+const dbConnection = process.env.DB_CONNECTION;
+const dbPort = process.env.DB_PORT;
+const dbHost = process.env.DB_HOST;
+const dbDatabase = process.env.DB_DATABASE;
+const dbUser = process.env.DB_USERNAME;
+const dbUserPassword = process.env.DB_PASSWORD;
+
+// Log events to file Created By Jim S.
+function logEvent(message) {
+    const filePath = './';
+    const timestamp = new Date().toISOString();
+    // const logMessage = `${timestamp} - ${message.toString()}\n`;
+    const logMessage = `${timestamp} - ${message.toString()}`;
+    
+    fs.appendFile('mcokserver.log', logMessage, (err) => {
+      if (err) {
+        console.error('Error writing to log file:', err);
+      }
+    });
+    // Write message to console
+    console.log(logMessage)
+  }
+
+//Function to add TrShipments Line in MSQL
+function insertTrShipmentRecord(id, shippingId) { 
+    const mysql = require('mysql');
+    let port = parseInt(dbPort, 10 );
+    const connection = mysql.createConnection({
+        port: port,
+        host: dbHost,
+        user: dbUser,
+        password: dbUserPassword,
+        connectTimeout: 10000,
+    });
+
+    connection.connect((err) => {
+        if (err) {
+            console.error('Error connecting to MySQL:', err);
+            return err;
+        }
+        console.log('Connected to MySQL!');
+
+    // Perform a query
+    connection.query("insert into business_central.tr_shipments (id, order_number) values ('"+shippingId+"','"+id+"');", (err, results) => {
+        if (err) {
+        console.error('Error executing query:', err);
+        return;
+        }
+        console.log('Query results:', results);
+    });
+});
+}
+
+// Function to update db.json on local file system
+// Save data to Json.db by Jim S.
+function updateDatabase(data, type) {
+    const filePath = './db.json';
+
+    try {
+        // Open the file
+        const rawData = fs.readFileSync(filePath); 
+        // Parse file
+        const jsonData = JSON.parse(rawData); 
+        // Add data to json array based on type
+        if (type === 'shipments') {
+            jsonData.shipments.push(data)
+        } else if (type === 'tr_orders') {
+            jsonData.tr_orders.push(data)
+        } else if (type === 'customer') {
+            jsonData.cusotmers.push(data)
+        } else {
+            console.log('Type could not be found')
+        }
+
+        // Refresh the router's internal state
+        router.db.setState(jsonData); 
+
+        // Save changes to db.json
+        fs.writeFileSync(filePath, JSON.stringify(jsonData, null, 3));
+        
+        console.log(data) 
+        return true
+
+    } catch {
+        console.error("db.json was not updated");
+        return false
+    }
+};
+
+// Function creates PUT order response
+function creatOrderResponse(data) {
+    const lineItems = data.lineItems
+    const shipmentMsgs = []
+    const shipmentLines = []
+    const orderItemLines = []
+    const failures = []
+    
+    // Setup tracking number based on shippers format
+    function createTrackingItems() { 
+        if (data.shipMethod == 'LTL') {
+            trackingNumber = '1Z'+faker.number.int(10000000000000,90000000000000)
+        } else if (data.shipMethod == 'USPS') {
+            trackingNumber = '1Z'+faker.number.int(10000000000000,90000000000000)
+        } else if (data.shipMethod == 'USP') { 
+            trackingNumber = '1Z'+faker.number.int(10000000000000,90000000000000)
+        } else {
+            trackingNumber = '1Z'+faker.number.int(10000000000000,90000000000000)
+        }
+        return trackingNumber;
+    }
+
+    function createShipmentLineItems(lineItem, shipmentId, trackingNumber){       
+        let shipmentsLineItemDetails = {
+            'carrier': data.shipMethod,
+            'id': shipmentId,
+            'orderId': data.id,
+            'orderType': 'warehouse',
+            'shipDate': data.orderDate,
+            'shipmentItems': [
+                {
+                'lineItemId': lineItem.externalLineNumber,
+                'quantity': lineItem.quantity
+                }
+            ],
+            'totalWeight': 1.4,
+            'trackingNumbers': [trackingNumber]   
+        }
+        shipmentLines.push(shipmentsLineItemDetails);
+    }
+    
+    function validateId(itemId){
+        for (let trItem  of validTrItems){
+            if (trItem.id == itemId){
+                return true
+            }
+        }
+        return false
+    }
+
+    //Create shipment header
+    function createShipmentMsg(lineItem, shipmentId) {
+        // Create Shipment lines
+    
+        let trackingNumber = createTrackingItems();
+        let shipmentLines = createShipmentLineItems(lineItem, shipmentId, trackingNumber);
+        let insertTrSHipmentDbEnrty = insertTrShipmentRecord(data.id, shipmentId);
+        let shipmentMsg = {
+            'id': shipmentId,
+            'carrier': data.shipMethod,
+            'orderId': data.id,
+            'shipDate': data.orderType,
+            'orderType': 'warehouse',
+            'totalWeight': 1.5,
+            'shipmentItems': shipmentLines,
+            }
+        shipmentMsgs.push(shipmentMsg)
+    }
+
+    // For each order item line create a response based on TR format.
+    for (let lineItem  of lineItems){
+        
+        let validationStatus = validateId(lineItem.productId)
+        if (validationStatus === true) {
+        
+            let returns = [];
+            let shipmentId = faker.number.int(10000000,90000000);
+            let createShipmentObjects = createShipmentMsg(lineItem=lineItem, shipmentId);
+            
+            // Create Order Line Items
+            let lineItemDetails = {
+                'canceled': false,
+                'id': lineItem.externalLineNumber,
+                'orderId': data.id,
+                'pricesPerUnit': lineItem.pricesPerUnit,
+                'productId': lineItem.productId,
+                'quantity': lineItem.quantity,
+                'returns': returns, 
+                'shipmentIds': [shipmentId],
+                'externalLineNumber': lineItem['externalLineNumber']
+            }
+            orderItemLines.push(lineItemDetails);
+        }
+        else {
+            failures.push(lineItem)
+        }
+    }
+    return [shipmentMsgs, shipmentLines, orderItemLines, failures];
+}
+
+// Adds hyphens to a GUID
+function addHyphensToGuid(guid) {
+    // Insert hyphens in the correct positions
+    return `${guid.slice(0, 8)}-${guid.slice(8, 12)}-${guid.slice(12, 16)}-${guid.slice(16, 20)}-${guid.slice(20)}`;
+  }
+  
+// Add custom routes before JSON Server router
+server.get('/health-check', (req, res) => {
+    res.jsonp({"status": "ok"});
+})
+
+// Data Warehouse Section dw_customers
+server.get('/cxf/DW/DMCustomers', (req, res) => {
+    var data = router.db.get('dw_customers').value();
+
+    res.jsonp(data);
+})
+
+// TR Shipments Sections
+// Posts order data to db.json and provides a response
+// Created by Jim S.
+server.post('/v1/shipments', (req, res, ) => {
+    const data = req.body;
+    const dbType = 'shipments';
+    response = updateDatabase(data, dbType);
+   
+    if (data === response) {
+        data = {error: "missing shipment"}
+        res.status(404).jsonp(data)
+    } else {
+        text =  {userMessage: "The db.json file has been updated", technicalMessage: "The db.json file has been updated"} 
+        res.status(201).json(data)
+    }
+})
+
+server.get('/v1/shipments', (req, res) => {
+    var data = router.db.get('shipments').value()
+    if (data === undefined) {
+        res.status(404)
+        data = {error: "missing shipment"}
+    }
+
+    res.jsonp(data);
+})
+
+server.get('/v1/shipments/:id', (req, res) => {
+    var shipments = router.db.get('shipments').value()
+    data = _.find(shipments, ['id', Number(req.params.id)])
+
+    if (data === undefined) {
+        res.status(404)
+	data = {error: "missing shipment"};
+    }
+    res.jsonp(data);
+})
+
+// TR Order Endpoint
+// Put order created by Jim S.
+server.put('/v1/orders/:id', (req, res) => {
+    const id = req.params.id;
+    const data = req.body;
+    const responseData = data;
+    logEvent('Starting Mock TR order processing for BC order number ' + id);
+
+    // create create Order respponse and update db.json
+    let shipmentJsonMsg = creatOrderResponse(data);
+    
+    // Check to see if there were failures
+    let missingItems = shipmentJsonMsg[3]
+    
+    if (missingItems.length = 0) { 
+        logEvent('The order number '+ id + ' shipment was created');
+    
+        //Push the updated data set to db.json and send
+        responseData['shipments'] = shipmentJsonMsg[1];
+        let getLineItems = shipmentJsonMsg[1];
+        let lineItems = shipmentJsonMsg[2];
+        let externalOrderId = addHyphensToGuid(data.externalOrderId); // Disale adding Hyphens
+        delete responseData.billTo;
+        responseData['externalOrderId'] = externalOrderId;
+        responseData['lineItems'] = lineItems;
+        responseData['completeDelivery'] = true;
+        logEvent(JSON.stringify(responseData));
+        
+        //post the shipment to db.json
+        let shipments = shipmentJsonMsg[1];
+        updateDatabase(shipments[0], 'shipments');
+        logEvent('The shipment for order number '+id+' was added to the db.json')
+        console.log('The shipment for order number '+id+' was added to the db.json');    
+    
+        //post the order to db.json
+        const orderAdded = updateDatabase(responseData, 'tr_orders');
+    } else { 
+        orderAdded = false
+    }
+        
+    //Send Response
+    if (orderAdded == false) {
+        let data = {userMessage: "missing record", technicalMessage: "missing record"};
+        res.status(404).jsonp(data);
+        logEvent('Mock TR order processing failed for order #' +id);
+    } else {
+        res.status(201).jsonp(responseData);
+    }
+    logEvent('Compelted Mock TR order processing for #'+id);    
+})
+
+server.get('/v1/orders/:id', (req, res) => {
+    const dd = req.query
+    const finishedShipping = req.query.finishedShipping == 'true';
+    const orderId = req.params.id;
+    // Fetch data from db.json
+    const orders = router.db.get('tr_orders').value();
+    data = _.find(orders, ['id', req.params.id]);
+
+    // Check if data exists, else return an error
+    if (!data || data.length === 0) {
+        // data = {userMessage: "The order shipment was added to the db.json", technicalMessage: "The order shipment was added to the db.json"};
+        data = { error: "No orders found matching criteria" }
+        res.status(404).jsonp(data);
+    } else {
+        let results = [];
+        results.push(data);        
+        res.jsonp(results);
+    }
+})
+
+server.get('/v1/orders', (req, res) => { 
+    const finishedShipping = req.query.finishedShipping === 'true';
+    var orders = router.db.get('tr_orders').value()
+    if (req.query.id === undefined) {
+        return res.jsonp(orders);
+    } 
+    let query = req.query.id
+    let getOrder = _.find(orders, ['id', query]);
+    if (getOrder === undefined) {finishedShipping
+        res.status(404);
+        data = {error: "No orders found matching criteria "};
+        return res.jsonp(data);
+    }
+
+    let results = [];
+    results.push(getOrder);        
+    res.jsonp(results);
+      
+})
+
+// Refresh db.json file after it's been updated. Created by Jim S.
+server.post('/v1/refresh-dbjson', (req, res) => {     
+    const filePath = './db.json';
+    
+    try {
+        // Open the file
+        const rawData = fs.readFileSync(filePath); 
+        // Parse file
+        const jsonData = JSON.parse(rawData); 
+        // Refresh the router's internal state
+        router.db.setState(jsonData); 
+        // Send response    
+        res.status(200).jsonp({message: 'db.json was refreshed'});
+
+    } catch {
+        console.error("db.json was not updated");
+        return false
+    } 
+})
+
+// Middleware if there are special handling we want to do to some requests
+server.use((req, res, next) => {
+    //Pass to next middleware
+    next()
+})
+
+// Handle how responses are returned for special uses cases like 404s
+router.render = (req, res) => {
+    if (res.statusCode === 404) {
+        res.jsonp({
+            error: 'missing record'
+        })
+    }
+}
+
+// Load router
+server.use(router)
+
+// Start Server
+server.listen(3000, () => {
+  console.log('OCP Mock Server is running')
+})

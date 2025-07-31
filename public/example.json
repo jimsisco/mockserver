@@ -1,0 +1,82 @@
+{
+	"id": "32778098",
+	"shipTo": {
+		"city": "REARDAN",
+		"nameLine1": "GEOFF SCHULZ",
+		"postalCode": "99029",
+		"regionCode": "WA",
+		"countryCode": "US",
+		"phoneNumber": "(503)-281-1191",
+		"addressLine1": "PO Box 402"
+	},
+	"lineItems": [
+		{
+			"id": 1,
+			"orderId": "32778098",
+			"returns": [],
+			"canceled": false,
+			"quantity": 3,
+			"productId": "TP-251",
+			"shipmentIds": [
+				1576779
+			],
+			"pricePerUnit": 12.99,
+			"externalLineNumber": 100
+		},
+		{
+			"id": 1000,
+			"orderId": "32778098",
+			"returns": [
+				{
+					"id": 29793,
+					"orderId": "32778098",
+					"quantity": 1,
+					"lineItemId": 1000,
+					"reasonCode": "OTHER",
+					"returnDate": "2024-12-11T19:59:00.0000000Z",
+					"isAddedBackToInventory": false
+				}
+			],
+			"canceled": false,
+			"quantity": 1,
+			"productId": "TLP-251",
+			"shipmentIds": [
+				1576779
+			],
+			"pricePerUnit": 16.99,
+			"externalLineNumber": 200
+		}
+	],
+	"orderDate": "2024-11-17T06:00:00.0000000Z",
+	"shipments": [
+		{
+			"id": 1576779,
+			"carrier": "USPS Priority Intl Mail",
+			"orderId": "32778098",
+			"shipDate": "2024-11-18T23:00:30.9830000Z",
+			"orderType": "warehouse",
+			"totalWeight": 4.1,
+			"shipmentItems": [
+				{
+					"quantity": 3,
+					"lineItemId": 1
+				},
+				{
+					"quantity": 1,
+					"lineItemId": 1000
+				}
+			],
+			"trackingNumbers": [
+				"9205590338572400351485"
+			]
+		}
+	],
+	"customerId": "30082222",
+	"shipMethod": "P1C",
+	"createdDate": "2024-11-18T08:44:25.5700000Z",
+	"subscriptions": [],
+	"externalOrderId": "32778098",
+	"completeDelivery": true,
+	"salesOrderNumber": "0243400478",
+	"specialProcessingCode": "OCP-REGULAR"
+}

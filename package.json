@@ -1,0 +1,8 @@
+{
+    "dependencies": {
+        "@faker-js/faker": "9.3.0",
+        "csv-parser": "^3.1.0",
+        "json-server": "^0.17.4",
+        "swagger-ui-dist": "^5.18.2"
+    }
+}
